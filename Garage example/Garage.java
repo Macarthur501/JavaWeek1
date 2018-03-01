@@ -1,36 +1,30 @@
 import java.util.ArrayList;
 
 public class Garage {
-
-
-	public static void main(String[] args) {
-		ArrayList<Vehicle> vehiclesInGarage = new ArrayList<Vehicle>();
-		addVehicleCar(40000, 1234.5, "5755", 56000, true, false, 4, vehiclesInGarage);
-		addVehicleBus(56000, 6546.8, "8998", 79000, true, true, true, vehiclesInGarage);
-		System.out.println(calculateBill(findVehicle(vehiclesInGarage, "8998")));
+	public ArrayList<Vehicle> vehicleList;
+	public Garage() {
+		vehicleList = new ArrayList<Vehicle>();
 		
+		
+	
 	}
 
-
-
-
-	public static void addVehicleCar(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, int numberOfDoors,
-													ArrayList<Vehicle> vehiclesInGarage) {
+	public void addVehicleCar(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, int numberOfDoors) {
 		Car car = new Car(mileage, weight, iD, price, needsFixing, needsClean, numberOfDoors);
-		vehiclesInGarage.add(car);
+		vehicleList.add(car);
+		
+		
 		}
 		
-	public static void addVehicleMotorcycle(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, int ccEngineSize,
-														ArrayList<Vehicle> vehiclesInGarage) {
+	public void addVehicleMotorcycle(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, int ccEngineSize) {
 		Motorcycle bike = new Motorcycle(mileage, weight, iD, price, needsFixing, needsClean, ccEngineSize);
-		vehiclesInGarage.add(bike);
+		vehicleList.add(bike);
 		}	
-	public static void addVehicleBus(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, boolean doubleDeck,
-														ArrayList<Vehicle> vehiclesInGarage) {
+	public void addVehicleBus(int mileage, double weight, String iD, int price, boolean needsFixing, boolean needsClean, boolean doubleDeck) {
 		Bus bus = new Bus(mileage, weight, iD, price, needsFixing, needsClean, doubleDeck);
-		vehiclesInGarage.add(bus);
+		vehicleList.add(bus);
 		}
-	public static Vehicle findVehicle(ArrayList<Vehicle> vehicleList, String iD) {
+	public Vehicle findVehicle(ArrayList<Vehicle> vehicleList, String iD) {
 		Vehicle desiredVehicle = null;
 		for ( Vehicle v : vehicleList) {
 			if (v.getID() == iD) {
@@ -42,7 +36,7 @@ public class Garage {
 		return desiredVehicle;
 	}
 	
-	public static double calculateBill(Vehicle desiredVehicle) {
+	public double calculateBill(Vehicle desiredVehicle) {
 		double totalBill = 0.0;
 		double basicFix = 150.00;
 		switch(desiredVehicle.getClass().getCanonicalName()) {
@@ -69,33 +63,57 @@ public class Garage {
 				}
 			break;}
 		case"Bus":
-			{if (desiredVehicle.getIsBroken()){
-				totalBill += basicFix*1.2;
+			Bus bus = (Bus) desiredVehicle;
+			if (bus.getDoubleDeck()) {
+				if (bus.getIsBroken()){
+					totalBill += basicFix*1.5;
 				}
-			if (desiredVehicle.getNeedsClean()) {
+				else {
+					totalBill += basicFix*1.2;
+				}
+				}
+				
+			if (bus.getNeedsClean()) {
 				totalBill += 50.00;
 				}
-			if (desiredVehicle.getMileage() > 50000) {
+			
+			if (bus.getMileage() > 50000) {
 				totalBill += 50.00;
 			}
 			break;}
 		
-		}
+		
 		return totalBill;
-				
-			
-		
-		
-		}
+	}		
+	
 		
 		
 		
 		
-		
-		
-		
+	public ArrayList<Vehicle> removeVehicle(ArrayList<Vehicle> vehicleList, String iD) {
+		int pos = 0;
+		for ( Vehicle v : vehicleList) {
+			if (v.getID() == iD) {
+				pos = vehicleList.indexOf(v);
+				}
+			}
+	
+		if (pos == 0) {
+			System.out.println("Vehicle not found!");
+			}
+		else {
+			vehicleList.remove(pos);
+			}
+		return vehicleList;
+	}
+	public ArrayList<Vehicle> clearVehicleList(ArrayList<Vehicle> vehicleList) {
+		vehicleList.clear();
+		return vehicleList;
 	}
 
+
+
+}
 
 
 
