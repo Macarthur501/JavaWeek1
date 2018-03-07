@@ -1,6 +1,5 @@
 import java.lang.Math;
 import java.util.Scanner;
-import java.text.*;
 public class PlayerActions {
 	public PlayerActions() {
 		
@@ -14,7 +13,7 @@ public class PlayerActions {
 		origPos[0] = x;
 		origPos[1] = y;
 		if (readCompass(playerPos, treasurePos) == 0.00) {
-			return "You have found the treasure! Congratualtions traveler";
+			return "You have found the treasure! Congratualtions traveller";
 			
 		}
 		else {
@@ -23,7 +22,7 @@ public class PlayerActions {
 			switch(move) {
 				case "n":
 					if ((playerPos[1]) > map.length - 2) {
-						System.out.println("You are at the edge of the forest, choose another direction");
+						System.out.println("You are at the edge of the swamp, choose another direction");
 						movePlayer(map, playerPos, treasurePos);
 					}
 					else {
@@ -33,7 +32,7 @@ public class PlayerActions {
 					break;
 				case "e":
 					if ((playerPos[0]) > map.length - 2) {
-						System.out.println("You are at the edge of the forest, choose another direction");
+						System.out.println("You are at the edge of the swamp, choose another direction");
 						movePlayer(map, playerPos, treasurePos);
 						
 					}
@@ -44,7 +43,7 @@ public class PlayerActions {
 					break;
 				case "s":
 					if ((playerPos[1]) < 1) {
-						System.out.println("You are at the edge of the forest, choose another direction");
+						System.out.println("You are at the edge of the swamp, choose another direction");
 						movePlayer(map, playerPos, treasurePos);
 					}
 					else{
@@ -54,7 +53,7 @@ public class PlayerActions {
 					break;
 				case "w":
 					if ((playerPos[0]) < 1) {
-						System.out.println("You are at the edge of the forest, choose another direction");
+						System.out.println("You are at the edge of the swamp, choose another direction");
 						movePlayer(map, playerPos, treasurePos);
 					}
 					else{
@@ -87,9 +86,13 @@ public class PlayerActions {
 	
 	public String getPlayerInput() {
 		System.out.println("You can travel north, east, south or west");
-		System.out.println("Which Direcetion would you like to go?");
+		System.out.println("Which Direction would you like to go?");
 		Scanner scanner = new Scanner(System.in);
 		String movement = scanner.nextLine();
+		if(movement.length() < 1) {
+			return movement;
+		}
+		
 		movement = movement.substring(0, 1);
 		return movement.toLowerCase();
 		

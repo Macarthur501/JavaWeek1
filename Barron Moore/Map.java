@@ -7,8 +7,8 @@ public class Map {
 
 	public String descriptionOfWakeUp() {
 		return "You awaken in a dank swamp..... All you can smell are sinister, toxic fumes that surround the large clearing you've found yourself in."
-				+ " A gold compass is attached to a string round your neck, it's dial points at a constant direction but it is not north, intrigued by this"
-				+ " you get up and decide to follow its course.....";
+				+ " \nA gold compass is attached to a string round your neck, it's dial points at a constant direction but it is not north, intrigued by this"
+				+ " \nyou get up and decide to follow its course.....";
 	}
 	public int[][] genearteMap(int mapSize) {
 		int[][] map;

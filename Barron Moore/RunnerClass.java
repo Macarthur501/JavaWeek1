@@ -7,7 +7,7 @@ public class RunnerClass {
 		do {
 			
 			Map game1 = new Map();
-			System.out.println("How large would you like the game map to be? e.g enter: 10 for 10x10 or 78 for 78x78, the larger map the harder to find the treasure!");
+			System.out.println("How large would you like the game map to be? e.g enter: 10 for 10x10 or 78 for 78x78,\nthe larger map the harder to find the treasure!");
 			Scanner scanner = new Scanner(System.in);
 			int mapSize = scanner.nextInt();
 			int [][] thisMap = game1.genearteMap(mapSize);
