@@ -1,7 +1,8 @@
+import java.io.IOException;
 
 public class RunnerClass {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		PersonRegister personList = new PersonRegister();
 		ItemRegister itemList = new ItemRegister();
 		Person p1 = new PersonBuilder().name("Stefano").email("Stefano@silva.com").phoneNumber("07545678907").buildPerson();
@@ -15,6 +16,8 @@ public class RunnerClass {
 		itemList.add(b1);
 		itemList.checkOut(b1);
 		itemList.checkIn(b1);
+		itemList.exportItemList();
+		
 		
 	}
 
